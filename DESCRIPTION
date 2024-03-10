@@ -21,4 +21,5 @@ RoxygenNote: 7.2.3
 Imports: 
     pillar,
     vctrs
- 
+URL: https://github.com/christopherkenny/palette
+BugReports: https://github.com/christopherkenny/palette/issues
