@@ -10,12 +10,12 @@
 palette <- function(x = character()) {
   #x <- rlang::list2(...)
 
-  x <- vctrs::vec_cast(x, 'character')
+  x <- vec_cast(x, 'character')
   new_palette(x)
 }
 
 new_palette <- function(x = character()) {
-  vctrs::new_vctr(x, class = 'palette')
+  new_vctr(x, class = 'palette')
 }
 
 #' @export
@@ -33,6 +33,6 @@ is_palette <- function(x) {
 #' @export
 #' @rdname palette
 as_palette <- function(x) {
-  vctrs::vec_cast(x, new_palette())
+  vec_cast(x, new_palette())
 }
 

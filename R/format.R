@@ -10,10 +10,9 @@ vec_ptype_full.palette <- function(x, ...) {
 
 #' @export
 format.palette <- function(x, ...) {
-  if (vctrs::vec_is_empty(x)) {
+  if (vec_is_empty(x)) {
     return(character())
   }
 
-  vctrs::vec_data(x)
-
+  ifelse(is.na(x), '', vec_data(x))
 }
