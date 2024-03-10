@@ -6,6 +6,8 @@
 \alias{palette-package}
 \title{palette: Color Scheme Helpers}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Hexadecimal codes are typically used to represent colors in R. Connecting these codes to their colors requires practice or memorization. 'palette' provides a 'vctrs' class for working with color palettes, including printing and plotting functions. The goal of the class is to place visual representations of color palettes directly on or, at least, next to their corresponding character representations. Palette extensions also are provided for data frames using 'pillar'.
 }
 \seealso{

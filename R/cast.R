@@ -12,6 +12,6 @@ vec_cast.palette <- function(x, to, ...) {
 #' @export
 vec_cast.palette.character <- function(x, to, ...) palette(x)
 
-# #' @method vec_cast.palette default
-# #' @export
-# vec_cast.character.palette <- function(x, to, ...) vec_data(x)
+#' @method vec_cast.character palette
+#' @export
+vec_cast.character.palette <- function(x, to, ...) vec_data(x)
