@@ -10,11 +10,12 @@ vec_ptype_full.palette <- function(x, ...) {
 
 #' @export
 format.palette <- function(x, ...) {
-  if (vec_is_empty(x)) {
+  if (length(x) == 0) {
     return(character())
   }
 
-  ifelse(is.na(x), '<NA>', vec_data(x))
+  # ifelse(is.na(x), '<NA>', vec_data(x))
+  vec_data(x)
 }
 
 #' @export
@@ -28,6 +29,9 @@ obj_print_data.palette <- function(x, ...) {
   out <- vapply(
     seq_along(x),
     function(i) {
+      if (is.na(x[[i]])) {
+        return('<NA>')
+      }
       if (l[i] > 0.5) {
         paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
       } else {
