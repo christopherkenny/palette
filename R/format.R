@@ -23,14 +23,20 @@ obj_print_data.palette <- function(x, ...) {
     return(invisible(NULL))
   }
 
+  l <- apply(grDevices::col2rgb(x) / 256, 2, function(y) sum(c(0.2126, 0.7152, 0.0722) * y))
+
   out <- vapply(
     seq_along(x),
     function(i) {
-      paste0(cli::make_ansi_style(x[[i]], bg = TRUE)('  '), format(x[[i]]))
+      if (l[i] > 0.5) {
+        paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
+      } else {
+        paste0(cli::col_white(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
+      }
     },
     FUN.VALUE = character(1)
   )
-  print(out, quote = FALSE)
+  cat(out)
 
   invisible(x)
 }

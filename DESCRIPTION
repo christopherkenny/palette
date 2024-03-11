@@ -24,3 +24,5 @@ Imports:
     vctrs
 URL: https://github.com/christopherkenny/palette
 BugReports: https://github.com/christopherkenny/palette/issues
+Suggests: 
+    ggplot2

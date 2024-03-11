@@ -2,6 +2,12 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @import vctrs
 ## usethis namespace: end
+NULL
+
+#' Internal vctrs methods
+#'
+#' @import vctrs
+#' @keywords internal
+#' @name palette-vctrs
 NULL
