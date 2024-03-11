@@ -47,7 +47,7 @@ palette(roygbiv)
 
 </div>
 
-There is also a `plot()` method for visualizing the colors:
+<br> There is also a `plot()` method for visualizing the colors:
 
 ``` r
 plot(palette(roygbiv))

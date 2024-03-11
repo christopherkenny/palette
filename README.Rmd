@@ -46,7 +46,7 @@ palette(roygbiv)
 <img src = "man/figures/README-print.png" width = "700px" align = "left">
 </div>
 
-
+<br>
 There is also a `plot()` method for visualizing the colors:
 
 ```{r plot}
