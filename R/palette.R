@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' palette(c('#ED0A3F', '#0066FF', '#01A638'))
+#' palette(c('#ED0A3F', '#0066FF', '#FBE870', '#01A638', '#FF681F'))
 palette <- function(x = character()) {
   #x <- rlang::list2(...)
 

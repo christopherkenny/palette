@@ -11,7 +11,7 @@ plot.palette <- function(x, ...) {
 #' @export
 #'
 #' @examples
-#' plot_palette(crayons$standard16)
+#' plot_palette(c('#ED0A3F', '#0066FF', '#FBE870', '#01A638', '#FF681F'))
 plot_palette <- function(x) {
   n <- length(x)
   x_in <- stats::setNames(x, x)
@@ -36,17 +36,16 @@ plot_palette <- function(x) {
   )
   label_loc$col[is.na(label_loc$col)] <- ''
 
-  # if (requireNamespace('farver', quietly = TRUE)) {
-  #   label_loc$color = ifelse(farver::decode_colour(x, to = 'hcl')[, 3] > 50, 'black', 'white')
-  # } else {
-     label_loc$color = 'black'
-  # }
-     return(list(sq, label_loc, x_in))
+  label_loc$color <- ifelse(hex_to_luminosity(x) > 0.5, 'black', 'white')
 
-  if (TRUE) {#(requireNamespace('ggplot2', quietly = TRUE)) {
+  if (requireNamespace('ggplot2', quietly = TRUE)) {
     # if ggplot2 is available, return a ggplot
+    # fake pronoun = ggplot2::.data will fail, so define to avoid warning
+    .data <- ggplot2::.data
+
+    # make the plot:
     ggplot2::ggplot(sq, ggplot2::aes(x = .data$x, y = .data$y)) +
-      ggplot2::geom_tile(ggplot2::aes(fill = col)) +
+      ggplot2::geom_polygon(ggplot2::aes(fill = col)) +
       ggplot2::geom_text(data = label_loc, ggplot2::aes(label = .data$col, color = .data$color)) +
       ggplot2::guides(fill = 'none', color = 'none') +
       ggplot2::scale_fill_manual(values = x_in, na.value = 'white') +
@@ -55,8 +54,16 @@ plot_palette <- function(x) {
       ggplot2::theme_void()
   } else {
     # otherwise make a base plot
+
+    sq <- sq[!is.na(sq$col), ]
     # Plot tiles
-    rect(sq$x, sq$y, col = x_in, xlab = "", ylab = "", asp = 1)
+    plot(NULL, axes = FALSE, xlab = '', ylab = '',
+         xlim = c(0, nc), ylim = c(0, nr), asp = 1)
+    rect(xleft = sq$x[(seq_along(x) * 4) - 3],
+         xright = sq$x[(seq_along(x) * 4) - 2],
+         ybottom = sq$y[(seq_along(x) * 4) - 3],
+         ytop = sq$y[(seq_along(x) * 4)],
+         col = x_in)
 
     # Add text
     text(label_loc$x, label_loc$y, labels = label_loc$col, col = label_loc$color)

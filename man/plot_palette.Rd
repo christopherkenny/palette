@@ -16,5 +16,5 @@ A \code{ggplot} (if ggplot2 is available) or base plot of the palette
 Plot Palette Colors
 }
 \examples{
-plot_palette(crayons$standard16)
+plot_palette(c('#ED0A3F', '#0066FF', '#FBE870', '#01A638', '#FF681F'))
 }

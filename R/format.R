@@ -23,7 +23,7 @@ obj_print_data.palette <- function(x, ...) {
     return(invisible(NULL))
   }
 
-  l <- apply(grDevices::col2rgb(x) / 256, 2, function(y) sum(c(0.2126, 0.7152, 0.0722) * y))
+  l <- hex_to_luminosity(x)
 
   out <- vapply(
     seq_along(x),
