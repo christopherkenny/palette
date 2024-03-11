@@ -33,12 +33,26 @@ You can install the development version of palette from [GitHub](https://github.
 pak::pak('christopherkenny/palette')
 ```
 
-## Example
+## Using `palette`
 
-This is a basic example which shows you how to solve a common problem:
+`palette` primarily provides a `palette` `vctrs` class.
+Using included data, `roygbiv`, a length 7 vector of hex codes, we can create a palette.
 
-```{r example}
+```{r print}
 library(palette)
-## basic example code
+palette(roygbiv)
 ```
 
+There is an included `plot()` method for visualizing the colors:
+
+```{r plot}
+plot(palette(roygbiv))
+```
+
+For use within `tibble`s, there is a `pillar_shaft` method:
+
+```{r pillar}
+tibble::tibble(
+  color = palette(roygbiv)
+)
+```

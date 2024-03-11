@@ -25,9 +25,11 @@ You can install the development version of palette from
 pak::pak('christopherkenny/palette')
 ```
 
-## Example
+## Using `palette`
 
-This is a basic example which shows you how to solve a common problem:
+`palette` primarily provides a `palette` `vctrs` class. Using included
+data, `roygbiv`, a length 7 vector of hex codes, we can create a
+palette.
 
 ``` r
 library(palette)
@@ -36,5 +38,34 @@ library(palette)
 #> The following object is masked from 'package:grDevices':
 #> 
 #>     palette
-## basic example code
+palette(roygbiv)
+#> <palette[7]>
+#>  [1]  #FF4444   #FFAE4D   #FFFF60   #50FF50   #3939FA   #AB3FFB  
+#>  [2]  #F68BF6
+```
+
+There is an included `plot()` method for visualizing the colors:
+
+``` r
+plot(palette(roygbiv))
+```
+
+<img src="man/figures/README-plot-1.png" width="100%" />
+
+For use within `tibble`s, there is a `pillar_shaft` method:
+
+``` r
+tibble::tibble(
+  color = palette(roygbiv)
+)
+#> # A tibble: 7 × 1
+#>       color
+#>       <pal>
+#> 1  #FF4444 
+#> 2  #FFAE4D 
+#> 3  #FFFF60 
+#> 4  #50FF50 
+#> 5  #3939FA 
+#> 6  #AB3FFB 
+#> 7  #F68BF6
 ```
