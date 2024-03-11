@@ -24,6 +24,7 @@ obj_print_data.palette <- function(x, ...) {
     return(invisible(NULL))
   }
 
+  # format
   l <- hex_to_luminosity(x)
 
   out <- vapply(
@@ -40,7 +41,37 @@ obj_print_data.palette <- function(x, ...) {
     },
     FUN.VALUE = character(1)
   )
-  cat(out)
+
+  # setup printing
+  width_console <- cli::console_width()
+  chars <- cli::ansi_nchar(out)
+
+  max_print <- getOption('max.print')
+  if (is.null(max_print)) max_print <- length(out)
+
+  # print
+  row_id <- 1
+  new_row <- TRUE
+
+  len <- min(vec_size(out), max_print)
+  # assumes first row is always able to print once
+  for (i in seq_len(len)) {
+    if (new_row) {
+      cur_char <- nchar(i) + 3
+      cat(paste0('[', row_id, '] '))
+      new_row <- FALSE
+    }
+    cat(paste0(' ', out[[i]], ' '))
+    cur_char <- cur_char + chars[[i]] + 2
+
+    if (i != len && ((cur_char + chars[[i + 1]]) > width_console)) {
+      cat('\n')
+      new_row <- TRUE
+      row_id <- row_id + 1
+    }
+  }
+
+  # give a heads up if truncated
 
   invisible(x)
 }
