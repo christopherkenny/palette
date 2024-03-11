@@ -26,21 +26,30 @@ obj_print_data.palette <- function(x, ...) {
 
   # format
   l <- hex_to_luminosity(x)
+  l[is.na(x)] <- NA_real_
 
+  fmt_x <- paste0(' ', format(x), ' ')
+  # out <- character(length(x))
+  # out[is.na(x)] <- '<NA>'
+  # out[l > 0.5] <- cli::col_black(cli::make_ansi_style(x[!is.na(x) & l > 0.5], bg = TRUE)(fmt_x[l > 0.5]))
+  # out[l <= 0.5] <- cli::col_white(cli::make_ansi_style(x[!is.na(x) & l <= 0.5], bg = TRUE)(fmt_x[l <= 0.5]))
+  bg_fns <- setNames(
+    lapply(unique(x), function(col) {cli::make_ansi_style(col, bg = TRUE)}),
+    unique(x)
+  )
   out <- vapply(
     seq_along(x),
     function(i) {
       if (is.na(x[[i]])) {
         return('<NA>')
       }
-      if (l[i] > 0.5) {
-        paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' "', format(x[[i]]), '" '))))
-      } else {
-        paste0(cli::col_white(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' "', format(x[[i]]), '" '))))
-      }
+      bg_fns[[x[[i]]]](fmt_x[i])
     },
     FUN.VALUE = character(1)
   )
+
+  out[l > 0.5] <- cli::col_black(out[l > 0.5])
+  out[l <= 0.5] <- cli::col_white(out[l <= 0.5])
 
   # setup printing
   width_console <- cli::console_width()
@@ -57,12 +66,12 @@ obj_print_data.palette <- function(x, ...) {
   # assumes first row is always able to print once
   for (i in seq_len(len)) {
     if (new_row) {
-      cur_char <- nchar(i) + 3
-      cat(paste0('[', row_id, '] '))
+      cur_char <- nchar(i) + 5
+      cat(lpad(paste0('[', row_id, '] '), 5))
       new_row <- FALSE
     }
-    cat(paste0(' ', out[[i]], ' '))
-    cur_char <- cur_char + chars[[i]] + 2
+    cat(paste0(out[[i]], ' '))
+    cur_char <- cur_char + chars[[i]] + 1
 
     if (i != len && ((cur_char + chars[[i + 1]]) > width_console)) {
       cat('\n')
@@ -72,6 +81,9 @@ obj_print_data.palette <- function(x, ...) {
   }
 
   # give a heads up if truncated
+  if (vec_size(out) > max_print) {
+    cat('\n[ reached getOption("max.print") -- omitted', max_print - vec_size(out), 'entries\n')
+  }
 
   invisible(x)
 }
@@ -81,20 +93,20 @@ pillar_shaft.palette <- function(x, ...) {
 
   l <- hex_to_luminosity(x)
 
+  fmt_x <- paste0(' ', format(x), ' ')
   out <- vapply(
     seq_along(x),
     function(i) {
       if (is.na(x[[i]])) {
         return('<NA>')
       }
-      if (l[i] > 0.5) {
-        paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
-      } else {
-        paste0(cli::col_white(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
-      }
+      cli::make_ansi_style(x[[i]], bg = TRUE)(fmt_x[[i]])
     },
     FUN.VALUE = character(1)
   )
+
+  out[l > 0.5] <- cli::col_black(out[l > 0.5])
+  out[l <= 0.5] <- cli::col_white(out[l <= 0.5])
 
   pillar::new_pillar_shaft_simple(out, align = 'center')
 }

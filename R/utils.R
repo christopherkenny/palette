@@ -8,6 +8,12 @@ bocks <- function(r, c) {
   )
 }
 
+# poorman's left pad string x to length len
+# beware: x needs to be length 1 but this isn't checked
+lpad <- function(x, len) {
+  paste0(paste0(rep(' ', each = len - nchar(x)), collapse = ''), x)
+}
+
 hex_to_luminosity <- function(hex) {
   apply(grDevices::col2rgb(hex) / 256, 2, function(y) sum(c(0.2126, 0.7152, 0.0722) * y))
 }

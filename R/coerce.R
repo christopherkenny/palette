@@ -12,7 +12,7 @@ vec_ptype2.palette <- function(x, y, ...) {
 
 #' @method vec_ptype2.palette default
 #' @export
-vec_ptype2.palette.default <- function(x, y, .., x_arg = '', y_arg = '') {
+vec_ptype2.palette.default <- function(x, y, ..., x_arg = '', y_arg = '') {
   vec_default_ptype2(x, y, ..., x_arg = x_arg, y_arg = y_arg)
 }
 

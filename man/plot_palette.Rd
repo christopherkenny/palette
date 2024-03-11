@@ -4,10 +4,12 @@
 \alias{plot_palette}
 \title{Plot Palette Colors}
 \usage{
-plot_palette(x)
+plot_palette(x, use_names = TRUE)
 }
 \arguments{
-\item{x}{A palette}
+\item{x}{a palette}
+
+\item{use_names}{Should the names of the palette be used as labels? Default: \code{TRUE}.}
 }
 \value{
 A \code{ggplot} (if ggplot2 is available) or base plot of the palette
