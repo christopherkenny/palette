@@ -82,7 +82,7 @@ obj_print_data.palette <- function(x, ...) {
 
   # give a heads up if truncated
   if (vec_size(out) > max_print) {
-    cat('\n[ reached getOption("max.print") -- omitted', max_print - vec_size(out), 'entries\n')
+    cat('\n[ reached getOption("max.print") -- omitted', vec_size(out) - max_print, 'entries.]\n')
   }
 
   invisible(x)
