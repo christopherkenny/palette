@@ -27,7 +27,7 @@ plot_palette <- function(x, use_names = TRUE) {
   sq <- data.frame(
     col = rep(vec_data(x), each = 4),
     x = box$x,
-    y = box$y
+    y = -box$y
   )
 
 
@@ -40,7 +40,7 @@ plot_palette <- function(x, use_names = TRUE) {
   label_loc <- data.frame(
     col = labs,
     x = box$x[seq(1, length(x) * 4, by = 4)] + 0.5,
-    y = box$y[seq(1, length(x) * 4, by = 4)] + 0.5
+    y = -(box$y[seq(1, length(x) * 4, by = 4)] + 0.5)
   )
   label_loc$col[is.na(label_loc$col)] <- ''
 
