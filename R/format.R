@@ -33,7 +33,7 @@ obj_print_data.palette <- function(x, ...) {
   # out[is.na(x)] <- '<NA>'
   # out[l > 0.5] <- cli::col_black(cli::make_ansi_style(x[!is.na(x) & l > 0.5], bg = TRUE)(fmt_x[l > 0.5]))
   # out[l <= 0.5] <- cli::col_white(cli::make_ansi_style(x[!is.na(x) & l <= 0.5], bg = TRUE)(fmt_x[l <= 0.5]))
-  bg_fns <- setNames(
+  bg_fns <- stats::setNames(
     lapply(unique(x), function(col) {cli::make_ansi_style(col, bg = TRUE)}),
     unique(x)
   )

@@ -25,5 +25,5 @@ a palette vector
 Create a palette
 }
 \examples{
-palette(c('#ED0A3F', '#0066FF', '#FBE870', '#01A638', '#FF681F'))
+palette(roygbiv)
 }
