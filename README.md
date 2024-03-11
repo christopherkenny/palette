@@ -43,7 +43,7 @@ palette(roygbiv)
 
 <div align="center">
 
-<img src = "man/figures/README-print.png" width = "500px">
+<img src = "man/figures/README-print.png" width = "700px" align = "left">
 
 </div>
 
@@ -65,6 +65,6 @@ tibble::tibble(
 
 <div align="center">
 
-<img src = "man/figures/README-pillar.png" width = "200px">
+<img src = "man/figures/README-pillar.png" width = "200px" align = "left">
 
 </div>

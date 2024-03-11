@@ -43,7 +43,7 @@ library(palette)
 palette(roygbiv)
 ```
 <div align = "center">
-<img src = "man/figures/README-print.png" width = "500px">
+<img src = "man/figures/README-print.png" width = "700px" align = "left">
 </div>
 
 There is an included `plot()` method for visualizing the colors:
@@ -61,5 +61,5 @@ tibble::tibble(
 ```
 
 <div align = "center">
-<img src = "man/figures/README-pillar.png" width = "200px">
+<img src = "man/figures/README-pillar.png" width = "200px" align = "left">
 </div>
