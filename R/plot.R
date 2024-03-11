@@ -24,13 +24,13 @@ plot_palette <- function(x) {
   # ggplot it ----
   box <- bocks(nr, nc)
   sq <- data.frame(
-    col = rep(x, each = 4),
+    col = rep(vec_data(x), each = 4),
     x = box$x,
     y = box$y
   )
 
   label_loc <- data.frame(
-    col = x,
+    col = vec_data(x),
     x = box$x[seq(1, length(x) * 4, by = 4)] + 0.5,
     y = box$y[seq(1, length(x) * 4, by = 4)] + 0.5
   )
