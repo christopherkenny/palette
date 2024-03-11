@@ -39,10 +39,13 @@ library(palette)
 #> 
 #>     palette
 palette(roygbiv)
-#> <palette[7]>
-#>  [1]  #FF4444   #FFAE4D   #FFFF60   #50FF50   #3939FA   #AB3FFB  
-#>  [2]  #F68BF6
 ```
+
+<div align="center">
+
+<img src = "man/figures/README-print.png" width = "500px">
+
+</div>
 
 There is an included `plot()` method for visualizing the colors:
 
@@ -58,14 +61,10 @@ For use within `tibble`s, there is a `pillar_shaft` method:
 tibble::tibble(
   color = palette(roygbiv)
 )
-#> # A tibble: 7 × 1
-#>       color
-#>       <pal>
-#> 1  #FF4444 
-#> 2  #FFAE4D 
-#> 3  #FFFF60 
-#> 4  #50FF50 
-#> 5  #3939FA 
-#> 6  #AB3FFB 
-#> 7  #F68BF6
 ```
+
+<div align="center">
+
+<img src = "man/figures/README-pillar.png" width = "200px">
+
+</div>

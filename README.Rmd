@@ -38,10 +38,13 @@ pak::pak('christopherkenny/palette')
 `palette` primarily provides a `palette` `vctrs` class.
 Using included data, `roygbiv`, a length 7 vector of hex codes, we can create a palette.
 
-```{r print}
+```{r print, results = 'hide'}
 library(palette)
 palette(roygbiv)
 ```
+<div align = "center">
+<img src = "man/figures/README-print.png" width = "500px">
+</div>
 
 There is an included `plot()` method for visualizing the colors:
 
@@ -51,8 +54,12 @@ plot(palette(roygbiv))
 
 For use within `tibble`s, there is a `pillar_shaft` method:
 
-```{r pillar}
+```{r pillar, eval = FALSE}
 tibble::tibble(
   color = palette(roygbiv)
 )
 ```
+
+<div align = "center">
+<img src = "man/figures/README-pillar.png" width = "200px">
+</div>
