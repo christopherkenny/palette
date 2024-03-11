@@ -66,7 +66,7 @@ obj_print_data.palette <- function(x, ...) {
   # assumes first row is always able to print once
   for (i in seq_len(len)) {
     if (new_row) {
-      cur_char <- nchar(i) + 5
+      cur_char <- chars[i] + 5
       cat(lpad(paste0('[', row_id, '] '), 5))
       new_row <- FALSE
     }
