@@ -2,6 +2,7 @@
 
 S3method(format,palette)
 S3method(obj_print_data,palette)
+S3method(pillar_shaft,palette)
 S3method(plot,palette)
 S3method(vec_cast,palette)
 S3method(vec_cast.character,palette)
@@ -20,3 +21,4 @@ export(palette)
 export(plot_palette)
 export(validate_palette)
 import(vctrs)
+importFrom(pillar,pillar_shaft)

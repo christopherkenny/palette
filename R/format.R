@@ -33,9 +33,9 @@ obj_print_data.palette <- function(x, ...) {
         return('<NA>')
       }
       if (l[i] > 0.5) {
-        paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
+        paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' "', format(x[[i]]), '" '))))
       } else {
-        paste0(cli::col_white(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
+        paste0(cli::col_white(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' "', format(x[[i]]), '" '))))
       }
     },
     FUN.VALUE = character(1)
@@ -43,4 +43,27 @@ obj_print_data.palette <- function(x, ...) {
   cat(out)
 
   invisible(x)
+}
+
+#' @export
+pillar_shaft.palette <- function(x, ...) {
+
+  l <- hex_to_luminosity(x)
+
+  out <- vapply(
+    seq_along(x),
+    function(i) {
+      if (is.na(x[[i]])) {
+        return('<NA>')
+      }
+      if (l[i] > 0.5) {
+        paste0(cli::col_black(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
+      } else {
+        paste0(cli::col_white(cli::make_ansi_style(x[[i]], bg = TRUE)(paste0(' ', format(x[[i]]), ' '))))
+      }
+    },
+    FUN.VALUE = character(1)
+  )
+
+  pillar::new_pillar_shaft_simple(out, align = 'center')
 }

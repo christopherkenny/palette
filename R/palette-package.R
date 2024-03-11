@@ -3,6 +3,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom pillar pillar_shaft
 ## usethis namespace: end
 NULL
 
