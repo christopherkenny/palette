@@ -1,4 +1,4 @@
-# palette (0.0.1)
+# palette 0.0.1
 
 * Initial CRAN submission.
 * Implements `palette` class with support for:

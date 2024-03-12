@@ -22,7 +22,7 @@ Imports:
     cli,
     pillar,
     vctrs
-URL: https://github.com/christopherkenny/palette
+URL: https://github.com/christopherkenny/palette, http://christophertkenny.com/palette/
 BugReports: https://github.com/christopherkenny/palette/issues
 Suggests: 
     ggplot2,
