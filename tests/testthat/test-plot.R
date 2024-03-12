@@ -12,7 +12,6 @@ test_that("plotting works with vdiffr", {
   vdiffr::expect_doppelganger(
     'plot-palette-ggplot',
     plot(palette(roygbiv))
-
   )
 
   vdiffr::expect_doppelganger(

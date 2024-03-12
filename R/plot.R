@@ -43,7 +43,9 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
     x = box$x[seq(1, length(x) * 4, by = 4)] + 0.5,
     y = -(box$y[seq(1, length(x) * 4, by = 4)] + 0.5)
   )
-  label_loc$col[is.na(label_loc$col)] <- ''
+  if (nrow(label_loc) > n) {
+    label_loc$col[(n + 1):nrow(label_loc)] <- ''
+  }
 
   label_loc$color <- ifelse(hex_to_luminosity(x) > 0.5, 'black', 'white')
 
@@ -64,6 +66,8 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
   } else {
     # otherwise make a base plot
     sq <- sq[!is.na(sq$col), ]
+    label_loc <- label_loc[seq_len(n), ]
+
     # Plot tiles
     plot(NULL, axes = FALSE, xlab = '', ylab = '',
          xlim = c(0, nc), ylim = c(nr, 0), asp = 1)
@@ -76,6 +80,7 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
     )
 
     # Add text
-    graphics::text(label_loc$x, -label_loc$y, labels = label_loc$col, col = label_loc$color)
+    graphics::text(label_loc$x, -label_loc$y,
+                   labels = label_loc$col, col = label_loc$color)
   }
 }
