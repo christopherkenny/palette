@@ -17,6 +17,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/christopherkenny/palette/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/christopherkenny/palette/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![palette status badge](https://christopherkenny.r-universe.dev/badges/palette)](https://christopherkenny.r-universe.dev/palette)
+[![Codecov test
+coverage](https://codecov.io/gh/christopherkenny/palette/branch/main/graph/badge.svg)](https://app.codecov.io/gh/christopherkenny/palette?branch=main)
 <!-- badges: end -->
 
 `palette` provides a lightweight infrastructure for working with color palettes in R.
