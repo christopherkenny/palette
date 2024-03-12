@@ -1,0 +1,5 @@
+> print(palette(roygbiv))
+<palette[7]>
+ [1]  #FF4444   #FFAE4D   #FFFF60   #50FF50   #3939FA   #AB3FFB  
+ [2]  #F68BF6  
+

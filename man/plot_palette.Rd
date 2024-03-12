@@ -4,12 +4,14 @@
 \alias{plot_palette}
 \title{Plot Palette Colors}
 \usage{
-plot_palette(x, use_names = TRUE)
+plot_palette(x, use_names = TRUE, use_ggplot = TRUE)
 }
 \arguments{
 \item{x}{a palette}
 
 \item{use_names}{Should the names of the palette be used as labels? Default: \code{TRUE}.}
+
+\item{use_ggplot}{Should the plot be made with ggplot2 if available? Default: \code{TRUE}.}
 }
 \value{
 A \code{ggplot} (if ggplot2 is available) or base plot of the palette
@@ -18,5 +20,5 @@ A \code{ggplot} (if ggplot2 is available) or base plot of the palette
 Plot Palette Colors
 }
 \examples{
-plot_palette(c('#ED0A3F', '#0066FF', '#FBE870', '#01A638', '#FF681F'))
+plot_palette(roygbiv)
 }

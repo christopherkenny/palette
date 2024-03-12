@@ -7,13 +7,14 @@ plot.palette <- function(x, ...) {
 #'
 #' @param x a palette
 #' @param use_names Should the names of the palette be used as labels? Default: `TRUE`.
+#' @param use_ggplot Should the plot be made with ggplot2 if available? Default: `TRUE`.
 #'
 #' @return A `ggplot` (if ggplot2 is available) or base plot of the palette
 #' @export
 #'
 #' @examples
-#' plot_palette(c('#ED0A3F', '#0066FF', '#FBE870', '#01A638', '#FF681F'))
-plot_palette <- function(x, use_names = TRUE) {
+#' plot_palette(roygbiv)
+plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
   n <- length(x)
   x_in <- stats::setNames(x, x)
 
@@ -46,7 +47,7 @@ plot_palette <- function(x, use_names = TRUE) {
 
   label_loc$color <- ifelse(hex_to_luminosity(x) > 0.5, 'black', 'white')
 
-  if (requireNamespace('ggplot2', quietly = TRUE)) {
+  if (use_ggplot && requireNamespace('ggplot2', quietly = TRUE)) {
     # if ggplot2 is available, return a ggplot
     # fake pronoun = ggplot2::.data will fail, so define to avoid warning
     .data <- ggplot2::.data
@@ -62,18 +63,19 @@ plot_palette <- function(x, use_names = TRUE) {
       ggplot2::theme_void()
   } else {
     # otherwise make a base plot
-
     sq <- sq[!is.na(sq$col), ]
     # Plot tiles
     plot(NULL, axes = FALSE, xlab = '', ylab = '',
-         xlim = c(0, nc), ylim = c(0, nr), asp = 1)
-    graphics::rect(xleft = sq$x[(seq_along(x) * 4) - 3],
-         xright = sq$x[(seq_along(x) * 4) - 2],
-         ybottom = sq$y[(seq_along(x) * 4) - 3],
-         ytop = sq$y[(seq_along(x) * 4)],
-         col = x_in)
+         xlim = c(0, nc), ylim = c(nr, 0), asp = 1)
+    graphics::rect(
+      xleft = sq$x[(seq_along(x) * 4) - 3],
+      xright = sq$x[(seq_along(x) * 4) - 2],
+      ybottom = -sq$y[(seq_along(x) * 4)],
+      ytop = -sq$y[(seq_along(x) * 4) - 3],
+      col = x_in
+    )
 
     # Add text
-    graphics::text(label_loc$x, label_loc$y, labels = label_loc$col, col = label_loc$color)
+    graphics::text(label_loc$x, -label_loc$y, labels = label_loc$col, col = label_loc$color)
   }
 }

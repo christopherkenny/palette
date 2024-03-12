@@ -1,0 +1,12 @@
+> pillar::pillar(palette(c(roygbiv, NA_character_)))
+<pillar>
+    <pal>
+ #FF4444 
+ #FFAE4D 
+ #FFFF60 
+ #50FF50 
+ #3939FA 
+ #AB3FFB 
+ #F68BF6 
+     <NA>
+

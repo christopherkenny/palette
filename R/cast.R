@@ -13,7 +13,7 @@ vec_cast.palette <- function(x, to, ...) {
 
 #' @method vec_cast.palette default
 #' @export
-vec_cast.palette.default <- function(x, to, ...) vec_default_cast(x, to, ...)
+vec_cast.palette.default <- function(x, to, ...) vec_default_cast(vec_data(x), to, ...)
 
 #' @method vec_cast.palette character
 #' @export

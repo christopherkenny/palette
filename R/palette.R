@@ -21,7 +21,7 @@ new_palette <- function(x = character()) {
 #' @export
 #' @rdname palette
 validate_palette <- function(x) {
-  x
+  invisible(x)
 }
 
 #' @export
@@ -33,6 +33,9 @@ is_palette <- function(x) {
 #' @export
 #' @rdname palette
 as_palette <- function(x) {
-  vec_cast(x, new_palette())
+  if (inherits(x, 'character')) {
+    x <- as.character(x)
+  }
+  vec_cast(x, to = new_palette())
 }
 

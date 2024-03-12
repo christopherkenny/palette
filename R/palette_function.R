@@ -1,6 +1,11 @@
 #' Build a palette function
 #'
 #' Creates a palette function for use within `ggplot2` as an argument to `discrete_scale`.
+#' If the number of colors requested is greater than the length of the palette,
+#' the palette will be repeated. If the number of colors requested is less than the
+#' length of the palette, the palette will be truncated. This is done explicitly, as
+#' `vctrs` recycling purposefully does not recycle to partial lengths, like a vector of
+#' size 10 to a vector of size 3 or 13.
 #'
 #' @param x a palette
 #'
