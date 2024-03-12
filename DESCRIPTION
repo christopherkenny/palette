@@ -1,6 +1,6 @@
 Package: palette
 Title: Color Scheme Helpers
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",
@@ -22,7 +22,7 @@ Imports:
     cli,
     pillar,
     vctrs
-URL: https://github.com/christopherkenny/palette, http://christophertkenny.com/palette/
+URL: https://github.com/christopherkenny/palette, https://christophertkenny.com/palette/
 BugReports: https://github.com/christopherkenny/palette/issues
 Suggests: 
     ggplot2,

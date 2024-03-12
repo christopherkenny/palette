@@ -1,0 +1,13 @@
+citHeader("To cite `palette` in publications use:")
+
+bibentry(
+    bibtype = "Manual",
+    title = "{palette}: Color Scheme Helpers",
+    author = c(
+        person("Christopher T.", "Kenny", email = "christopherkenny@fas.harvard.edu", role = c("aut", "cre"))
+        ),
+    year = "2024",
+    note = "R package",
+    key = "palette",
+    url = "https://christophertkenny.com/palette/"
+)
