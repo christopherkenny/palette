@@ -11,7 +11,7 @@ bocks <- function(r, c) {
 # poorman's left pad string x to length len
 # beware: x needs to be length 1 but this isn't checked
 lpad <- function(x, len) {
-  paste0(paste0(rep(' ', each = len - nchar(x)), collapse = ''), x)
+  paste0(paste0(rep(' ', each = len - cli::ansi_nchar(x)), collapse = ''), x)
 }
 
 hex_to_luminosity <- function(hex) {

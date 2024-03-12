@@ -1,0 +1,8 @@
+> palette(setNames(c(roygbiv, NA), c("red", "orange", "yellow", "green", "blue",
++   "purple", "violet", "testapalooza")))
+<palette[8]>
+            red       orange       yellow        green         blue       purple
+       #FF4444      #FFAE4D      #FFFF60      #50FF50      #3939FA      #AB3FFB 
+         violet testapalooza
+       #F68BF6          <NA>
+

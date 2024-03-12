@@ -1,5 +1,5 @@
 > print(palette(c(roygbiv, NA_character_)))
 <palette[8]>
-
-Error in out[l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5]): NAs are not allowed in subscripted assignments
+ [1]  #FF4444   #FFAE4D   #FFFF60   #50FF50   #3939FA   #AB3FFB  
+ [2]  #F68BF6  <NA> 
 

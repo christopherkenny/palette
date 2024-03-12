@@ -50,10 +50,10 @@ obj_print_data.palette <- function(x, ...) {
   )
 
   if (any(!is.na(l) & l > 0.5)) {
-    out[l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
+    out[!is.na(l) & l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
   }
   if (any(!is.na(l) & l <= 0.5)) {
-    out[l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
+    out[!is.na(l) &l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
   }
 
   # setup printing
@@ -67,23 +67,49 @@ obj_print_data.palette <- function(x, ...) {
   row_id <- 1
   new_row <- TRUE
 
-  len <- min(vec_size(out), max_print)
-  # assumes first row is always able to print once
-  for (i in seq_len(len)) {
-    if (new_row) {
-      cur_char <- chars[i] + 5
-      cat(lpad(paste0('[', row_id, '] '), 5))
-      new_row <- FALSE
-    }
-    cat(paste0(out[[i]], ' '))
-    cur_char <- cur_char + chars[[i]] + 1
+  if (is.null(vec_names(x))) {
+    len <- min(vec_size(out), max_print)
+    # assumes first row is always able to print once
+    for (i in seq_len(len)) {
+      if (new_row) {
+        cur_char <- chars[i] + 5
+        cat(lpad(paste0('[', row_id, '] '), 5))
+        new_row <- FALSE
+      }
+      cat(paste0(out[[i]], ' '))
+      cur_char <- cur_char + chars[[i]] + 1
 
-    if (i != len && ((cur_char + chars[[i + 1]]) > width_console)) {
+      if (i != len && ((cur_char + chars[[i + 1]]) > width_console)) {
+        cat('\n')
+        new_row <- TRUE
+        row_id <- row_id + 1
+      }
+    }
+  } else {
+    len <- max(c(10, cli::ansi_nchar(names(x)))) + 1L
+    n_per <- max(floor(width_console / len), 1)
+
+    i <- 1L
+    for (row in seq_len(ceiling(length(x) / n_per))) {
+      cat('  ')
+
+      for (co in seq_len(n_per)) {
+        if (i + co - 1L <= length(x)) {
+          cat(lpad(names(x)[[i + co - 1L]], len))
+        }
+      }
+      cat('\n  ')
+
+      for (co in seq_len(n_per)) {
+        if (i + co - 1L <= length(x)) {
+          cat(lpad(paste0(' ', out[[i + co - 1L]]), len))
+        }
+      }
       cat('\n')
-      new_row <- TRUE
-      row_id <- row_id + 1
+      i <- i + n_per
     }
   }
+
 
   # give a heads up if truncated
   if (vec_size(out) > max_print) {
@@ -111,10 +137,10 @@ pillar_shaft.palette <- function(x, ...) {
   )
 
   if (any(!is.na(l) & l > 0.5)) {
-    out[l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
+    out[!is.na(l) & l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
   }
   if (any(!is.na(l) & l <= 0.5)) {
-    out[l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
+    out[!is.na(l) & l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
   }
 
   pillar::new_pillar_shaft_simple(out, align = 'center')
