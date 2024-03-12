@@ -22,7 +22,9 @@ as_palette(x)
 a palette vector
 }
 \description{
-Create a palette
+A \code{palette} is a class for color palettes built on \code{vctrs}. It is represented
+as a character vector of hexadecimal color codes. Named colors (like \code{'red'})
+are translated to hexadecimal color codes.
 }
 \examples{
 palette(roygbiv)

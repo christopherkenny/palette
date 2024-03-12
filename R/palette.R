@@ -1,5 +1,9 @@
 #' Create a palette
 #'
+#' A `palette` is a class for color palettes built on `vctrs`. It is represented
+#' as a character vector of hexadecimal color codes. Named colors (like `'red'`)
+#' are translated to hexadecimal color codes.
+#'
 #' @param x A character vector of colors
 #'
 #' @return a palette vector
