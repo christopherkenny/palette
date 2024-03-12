@@ -37,6 +37,7 @@ obj_print_data.palette <- function(x, ...) {
     lapply(unique(stats::na.omit(x)), function(col) {cli::make_ansi_style(col, bg = TRUE)}),
     unique(stats::na.omit(x))
   )
+
   out <- vapply(
     seq_along(x),
     function(i) {
@@ -48,8 +49,12 @@ obj_print_data.palette <- function(x, ...) {
     FUN.VALUE = character(1)
   )
 
-  out[l > 0.5] <- cli::col_black(out[l > 0.5])
-  out[l <= 0.5] <- cli::col_white(out[l <= 0.5])
+  if (any(!is.na(l) & l > 0.5)) {
+    out[l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
+  }
+  if (any(!is.na(l) & l <= 0.5)) {
+    out[l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
+  }
 
   # setup printing
   width_console <- cli::console_width()
@@ -105,8 +110,12 @@ pillar_shaft.palette <- function(x, ...) {
     FUN.VALUE = character(1)
   )
 
-  out[l > 0.5] <- cli::col_black(out[l > 0.5])
-  out[l <= 0.5] <- cli::col_white(out[l <= 0.5])
+  if (any(!is.na(l) & l > 0.5)) {
+    out[l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
+  }
+  if (any(!is.na(l) & l <= 0.5)) {
+    out[l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
+  }
 
   pillar::new_pillar_shaft_simple(out, align = 'center')
 }

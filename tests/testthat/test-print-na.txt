@@ -1,5 +1,0 @@
-> print(palette(c(roygbiv, NA_character_)))
-<palette[8]>
-
-Error in out[l > 0.5] <- cli::col_black(out[l > 0.5]): NAs are not allowed in subscripted assignments
-

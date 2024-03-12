@@ -1,0 +1,3 @@
+> print(palette(x = character()))
+<palette[0]>
+
