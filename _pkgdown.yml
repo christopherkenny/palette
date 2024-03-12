@@ -11,6 +11,11 @@ reference:
   - is_palette
   - validate_palette
   - vec_ptype2.palette
+- title: "Work with palette websites"
+  desc: "Functions for viewing and decoding palettes from URLs"
+- contents:
+  - palette_browse
+  - palette_decode_url
 - title: "Helpers"
   desc: "Additional tools and example data"
 - contents:

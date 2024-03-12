@@ -14,7 +14,7 @@ Hexadecimal codes are typically used to represent colors in R. Connecting these 
 Useful links:
 \itemize{
   \item \url{https://github.com/christopherkenny/palette}
-  \item \url{http://christophertkenny.com/palette/}
+  \item \url{https://christophertkenny.com/palette/}
   \item Report bugs at \url{https://github.com/christopherkenny/palette/issues}
 }
 
