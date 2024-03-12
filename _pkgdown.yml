@@ -1,4 +1,19 @@
 url: http://christophertkenny.com/palette/
 template:
   bootstrap: 5
-
+  bootswatch: journal
+reference:
+- title: "The `palette` class"
+  desc: "Creating and manipulating `palette`s"
+- contents:
+  - palette
+  - as_palette
+  - is_palette
+  - validate_palette
+  - vec_ptype2.palette
+- title: "Helpers"
+  desc: "Additional tools and example data"
+- contents:
+  - palette_function
+  - plot_palette
+  - roygbiv
