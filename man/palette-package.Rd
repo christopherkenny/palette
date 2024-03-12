@@ -3,7 +3,6 @@
 \docType{package}
 \name{palette-package}
 \alias{palette-package}
-\alias{_PACKAGE}
 \title{palette: Color Scheme Helpers}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
