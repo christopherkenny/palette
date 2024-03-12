@@ -6,4 +6,6 @@ test_that("`palette` works", {
   expect_s3_class(as_palette(roygbiv), "palette")
 
   expect_s3_class(validate_palette(palette(roygbiv)), "palette")
+
+  expect_true(palette('red')[1] == '#FF0000')
 })

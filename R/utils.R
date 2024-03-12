@@ -17,3 +17,15 @@ lpad <- function(x, len) {
 hex_to_luminosity <- function(hex) {
   apply(grDevices::col2rgb(hex) / 256, 2, function(y) sum(c(0.2126, 0.7152, 0.0722) * y))
 }
+
+hex_from_name <- function(x) {
+
+  i <- which(x %in% names(named_hexcodes))
+
+  if (length(i) == 0) {
+    return(x)
+  }
+
+  x[i] <- named_hexcodes[x[i]]
+  x
+}

@@ -15,6 +15,7 @@ palette <- function(x = character()) {
 }
 
 new_palette <- function(x = character()) {
+  x <- hex_from_name(x)
   new_vctr(x, class = 'palette')
 }
 
