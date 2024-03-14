@@ -4,9 +4,12 @@
 #'
 #' @inheritParams vctrs::vec_cast
 #'
+#' @return a vector of the same length, as class `palette` if convertible, otherwise `character`
+#'
 #' @keywords internal
 #' @method vec_cast palette
 #' @export
+#' @export vec_cast.palette
 vec_cast.palette <- function(x, to, ...) {
   UseMethod('vec_cast.palette')
 }

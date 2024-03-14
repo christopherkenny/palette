@@ -15,6 +15,9 @@
 \code{vec_cast()}, \code{vec_cast_default()}, and \code{vec_restore()}, these
 dots are only for future extensions and should be empty.}
 }
+\value{
+a vector of the same length, as class \code{palette} if convertible, otherwise \code{character}
+}
 \description{
 Dispatch methods for \code{\link[vctrs:vec_cast]{vctrs::vec_cast()}}
 }

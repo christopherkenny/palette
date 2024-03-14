@@ -1,3 +1,10 @@
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Corrected the Description trailing space issue by removing the space before each line break. Thank you for catching that.
+* Adds missing return value for the `vec_cast` and `vec_ptype2` methods.
+
 ## Test environments
 * local R installation (Windows 11), R 4.3.3
 * local R installation (macOS), R 4.3.2

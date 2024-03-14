@@ -1,3 +1,7 @@
+# palette 0.0.2
+
+* Minor documentaion fixes for CRAN resubmission.
+
 # palette 0.0.1
 
 * Initial CRAN submission.

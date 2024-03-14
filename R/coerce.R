@@ -4,8 +4,12 @@
 #'
 #' @inheritParams vctrs::vec_ptype2
 #'
+#' @return a vector of the same length, as class `palette` if convertible, otherwise `character`
+#'
+#' @keywords internal
 #' @method vec_ptype2 palette
 #' @export
+#' @export vec_ptype2.palette
 vec_ptype2.palette <- function(x, y, ...) {
   UseMethod('vec_ptype2.palette', y)
 }

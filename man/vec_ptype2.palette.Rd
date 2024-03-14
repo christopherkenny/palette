@@ -11,6 +11,10 @@
 
 \item{...}{These dots are for future extensions and must be empty.}
 }
+\value{
+a vector of the same length, as class \code{palette} if convertible, otherwise \code{character}
+}
 \description{
 Coercion methods for \code{\link[vctrs:vec_ptype2]{vctrs::vec_ptype2()}}
 }
+\keyword{internal}
