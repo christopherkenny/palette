@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-03-14T16:51Z
+last_built: 2024-03-14T18:03Z
 urls:
   reference: http://christophertkenny.com/palette/reference
   article: http://christophertkenny.com/palette/articles
