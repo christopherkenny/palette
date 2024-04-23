@@ -28,3 +28,52 @@ hex_from_name <- function(x) {
   x[i] <- named_hexcodes[x[i]]
   x
 }
+
+convert_colors <- function(x, from = 'sRGB', to ='HSL') {
+  if (from == 'sRGB' && to == 'HSL') {
+    srgb <- grDevices::col2rgb(x) / 255
+
+    c_max <- apply(srgb, 2, max)
+    c_min <- apply(srgb, 2, min)
+    delta <- c_max - c_min
+    w_max <- apply(srgb, 2, which.max)
+    #w_min <- apply(srgb, 2, which.min)
+
+    l <- (c_max + c_min) / 2
+    s <- ifelse(l == 0, 0, delta / (1 - abs(2 * l - 1)))
+
+    h <- vapply(seq_along(x), function(i) {
+      if (delta[i] == 0) {
+        0
+      } else if (w_max[i] == 1) {
+        60 * (((srgb[2, i] - srgb[3, i]) / delta[i]) %% 6)
+      } else if (w_max[i] == 2) {
+        60 * (((srgb[3, i] - srgb[1, i]) / delta[i]) + 2)
+      } else {
+        60 * (((srgb[1, i] - srgb[2, i]) / delta[i]) + 4)
+      }
+    }, FUN.VALUE = numeric(1))
+
+    out <- cbind(h, 100 * s, 100 * l) |>
+      `colnames<-`(c('h', 's', 'l'))
+  } else if (from == 'HSL' && to == 'sRGB') {
+    h <- x[, 1]
+    s <- x[, 2] / 100
+    l <- x[, 3] / 100
+
+    c <- (1 - abs((2 * l) - 1)) * s
+    x <- c * (1 - abs(((h / 60) %% 2) - 1))
+    m <- l - (c / 2)
+
+    rgb <- matrix(data = 0, nrow = 3, ncol = length(x))
+    rgb[1, ] <- ifelse(h <= 60 | h >= 300, c, ifelse(h <= 120 | h >= 240, x, 0))
+    rgb[2, ] <- ifelse(h <= 60 | (h >= 180 & h < 240), x, ifelse(h <= 180, c, 0))
+    rgb[3, ] <- ifelse(h < 120, 0, ifelse((h >= 180 & h < 300), c, x))
+
+    out <- (t(rgb) + m) * 255
+  } else { # nocov start
+    cli::cli_abort('Only sRGB <-> HSL conversion is supported')
+  } # nocov end
+
+  out
+}

@@ -1,7 +1,7 @@
 test_that('darkening works', {
   expect_equal(
     darken(roygbiv),
-    c('#565652', '#C3C361', '#FFFF67', '#FFFF69', '#4343FF', '#4E4EFF', '#9F9FFF')
+    c('#FF5652', '#FFC361', '#FFFF67', '#71FF69', '#4B43FF', '#BA4EFF', '#FF9FFF')
   )
 
   expect_s3_class(
@@ -13,7 +13,7 @@ test_that('darkening works', {
 test_that('lightening works', {
   expect_equal(
     lighten(roygbiv),
-    c('#303037', '#999938', '#E3E343', '#E5E535', '#2F2FEE', '#2F2FEC', '#7777E1')
+    c('#EC3037', '#E79938', '#E2E343', '#25E535', '#212FEE', '#9C2FEC', '#E177E1')
   )
 
   expect_s3_class(

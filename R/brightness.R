@@ -30,29 +30,29 @@ lighten <- function(x, amount = .1, ...) {
 #' @rdname brightness
 #' @export
 darken.default <- function(x, amount = .1, ...) {
-  adjust_palette(x, 1 + amount)
+  adjust_brightness(x, 1 + amount)
 }
 
 #' @rdname brightness
 #' @export
 darken.palette <- function(x, amount = .1, ...) {
-  palette(adjust_palette(x, 1 + amount))
+  palette(adjust_brightness(x, 1 + amount))
 }
 
 
 #' @rdname brightness
 #' @export
 lighten.default <- function(x, amount = .1, ...) {
-  adjust_palette(x, 1 - amount)
+  adjust_brightness(x, 1 - amount)
 }
 
 #' @rdname brightness
 #' @export
 lighten.palette <- function(x, amount = .1, ...) {
-  palette(adjust_palette(x, 1 - amount))
+  palette(adjust_brightness(x, 1 - amount))
 }
 
-adjust_palette <- function(x, amount) {
+adjust_brightness <- function(x, amount) {
   srgb <- grDevices::col2rgb(vec_data(x))
   lab_m <- grDevices::convertColor(t(srgb), from = 'sRGB', to = 'Lab', scale.in = 255)
 
@@ -60,6 +60,6 @@ adjust_palette <- function(x, amount) {
 
   srgb_m <- grDevices::convertColor(lab_m, from = 'Lab', to = 'sRGB')
 
-  out <- grDevices::rgb(srgb_m[, 2], srgb_m[, 2], srgb_m[, 3], maxColorValue = 1)
+  out <- grDevices::rgb(srgb_m[, 1], srgb_m[, 2], srgb_m[, 3], maxColorValue = 1)
   vec_set_names(out, vec_names(x))
 }
