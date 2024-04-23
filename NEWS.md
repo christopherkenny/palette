@@ -1,3 +1,7 @@
+# palette 0.0.3
+
+* Adds `lighten()` and `darkness()` generic functions to lighten or darken colors.
+
 # palette 0.0.2
 
 * Minor documentation fixes for CRAN resubmission.
