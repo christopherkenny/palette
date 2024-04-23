@@ -11,6 +11,7 @@ reference:
   - is_palette
   - validate_palette
   - vec_ptype2.palette
+  - brightness
 - title: "Work with palette websites"
   desc: "Functions for viewing and decoding palettes from URLs"
 - contents:
