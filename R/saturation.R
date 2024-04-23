@@ -23,12 +23,6 @@ saturate <- function(x, amount = .1, ...) {
 
 #' @rdname saturation
 #' @export
-desaturate <- function(x, amount = .1, ...) {
-  UseMethod('desaturate')
-}
-
-#' @rdname saturation
-#' @export
 saturate.default <- function(x, amount = .1, ...) {
   adjust_saturation(x, 1 + amount)
 }
@@ -39,6 +33,11 @@ saturate.palette <- function(x, amount = .1, ...) {
   palette(adjust_saturation(x, 1 + amount))
 }
 
+#' @rdname saturation
+#' @export
+desaturate <- function(x, amount = .1, ...) {
+  UseMethod('desaturate')
+}
 
 #' @rdname saturation
 #' @export
