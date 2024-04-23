@@ -69,8 +69,10 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
     label_loc <- label_loc[seq_len(n), ]
 
     # Plot tiles
-    plot(NULL, axes = FALSE, xlab = '', ylab = '',
-         xlim = c(0, nc), ylim = c(nr, 0), asp = 1)
+    plot(NULL,
+      axes = FALSE, xlab = '', ylab = '',
+      xlim = c(0, nc), ylim = c(nr, 0), asp = 1
+    )
     graphics::rect(
       xleft = sq$x[(seq_along(x) * 4) - 3],
       xright = sq$x[(seq_along(x) * 4) - 2],
@@ -81,6 +83,7 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
 
     # Add text
     graphics::text(label_loc$x, -label_loc$y,
-                   labels = label_loc$col, col = label_loc$color)
+      labels = label_loc$col, col = label_loc$color
+    )
   }
 }

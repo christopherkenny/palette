@@ -15,16 +15,15 @@
 #' @examples
 #' palette_function(palette(roygbiv))(10)
 palette_function <- function(x) {
-
-  #if (type == 'discrete') {
-    pal <- unname(x)
-    function(n) {
-      if (n <= length(pal)) {
-        pal[seq_len(n)]
-      } else {
-        rep(pal, ceiling(n / length(pal)))[seq_len(n)]
-      }
+  # if (type == 'discrete') {
+  pal <- unname(x)
+  function(n) {
+    if (n <= length(pal)) {
+      pal[seq_len(n)]
+    } else {
+      rep(pal, ceiling(n / length(pal)))[seq_len(n)]
     }
+  }
   # } else if (type %in% c('continuous', 'binned')) {
   #
   # } else {

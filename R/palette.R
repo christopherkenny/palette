@@ -12,7 +12,7 @@
 #' @examples
 #' palette(roygbiv)
 palette <- function(x = character()) {
-  #x <- rlang::list2(...)
+  # x <- rlang::list2(...)
 
   x <- vec_cast(x, 'character')
   new_palette(x)
@@ -49,4 +49,3 @@ as_palette <- function(x) {
   }
   vec_cast(x, to = new_palette())
 }
-

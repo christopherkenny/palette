@@ -4,6 +4,6 @@
 #'
 #' @examples
 #' palette(roygbiv)
-#"
+#'
 #' @export
 roygbiv <- c('#FF4444', '#FFAE4D', '#FFFF60', '#50FF50', '#3939FA', '#AB3FFB', '#F68BF6')

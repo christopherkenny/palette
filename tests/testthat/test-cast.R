@@ -1,4 +1,4 @@
-test_that("palette casting works", {
+test_that('palette casting works', {
   expect_type(as.character(palette(roygbiv)), 'character')
 
   expect_identical(as_palette(roygbiv), palette(roygbiv))

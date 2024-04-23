@@ -1,4 +1,4 @@
-test_that("formatting works", {
+test_that('formatting works', {
   verify_output(
     path = 'output-print.txt',
     print(palette(roygbiv))
@@ -18,14 +18,16 @@ test_that('formatting with NA and names works', {
     palette(
       setNames(
         c(roygbiv, NA),
-        c('red', 'orange', 'yellow', 'green', 'blue',
-          'purple', 'violet', 'testapalooza')
+        c(
+          'red', 'orange', 'yellow', 'green', 'blue',
+          'purple', 'violet', 'testapalooza'
+        )
       )
     )
   )
 })
 
-test_that("pillars works", {
+test_that('pillars works', {
   verify_output(
     path = 'output-pillar.txt',
     pillar::pillar(palette(roygbiv))

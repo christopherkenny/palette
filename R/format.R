@@ -34,7 +34,9 @@ obj_print_data.palette <- function(x, ...) {
   # out[l > 0.5] <- cli::col_black(cli::make_ansi_style(x[!is.na(x) & l > 0.5], bg = TRUE)(fmt_x[l > 0.5]))
   # out[l <= 0.5] <- cli::col_white(cli::make_ansi_style(x[!is.na(x) & l <= 0.5], bg = TRUE)(fmt_x[l <= 0.5]))
   bg_fns <- stats::setNames(
-    lapply(unique(stats::na.omit(x)), function(col) {cli::make_ansi_style(col, bg = TRUE)}),
+    lapply(unique(stats::na.omit(x)), function(col) {
+      cli::make_ansi_style(col, bg = TRUE)
+    }),
     unique(stats::na.omit(x))
   )
 
@@ -53,7 +55,7 @@ obj_print_data.palette <- function(x, ...) {
     out[!is.na(l) & l > 0.5] <- cli::col_black(out[!is.na(l) & l > 0.5])
   }
   if (any(!is.na(l) & l <= 0.5)) {
-    out[!is.na(l) &l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
+    out[!is.na(l) & l <= 0.5] <- cli::col_white(out[!is.na(l) & l <= 0.5])
   }
 
   # setup printing
@@ -121,7 +123,6 @@ obj_print_data.palette <- function(x, ...) {
 
 #' @export
 pillar_shaft.palette <- function(x, ...) {
-
   l <- hex_to_luminosity(x)
 
   fmt_x <- paste0(' ', format(x), ' ')

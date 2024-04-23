@@ -1,4 +1,4 @@
-test_that("coercion works", {
+test_that('coercion works', {
   expect_s3_class(vctrs::vec_c(palette(roygbiv), palette(roygbiv)), 'palette')
 
   expect_s3_class(vctrs::vec_c(roygbiv, palette(roygbiv)), 'palette')

@@ -8,16 +8,16 @@
 #' @examples
 #' palette_browse(roygbiv)
 palette_browse <- function(x) {
-  #, site = c('coolors', 'colorhunt')
+  # , site = c('coolors', 'colorhunt')
   if (missing(x)) {
     cli::cli_abort('You must provide a palette as {.arg x} to browse.')
   }
 
-  site <- 'coolors'#match.arg(site)
+  site <- 'coolors' # match.arg(site)
 
-  #if (site == 'coolors') {
-    x <- substr(x, 2, 7)
-    link <- paste0('https://coolors.co/', paste0(x, collapse = '-'))
+  # if (site == 'coolors') {
+  x <- substr(x, 2, 7)
+  link <- paste0('https://coolors.co/', paste0(x, collapse = '-'))
   # } else if (site == 'colorhunt') {
   #   x <- substr(x, 2, 7)
   #   if (length(x) > 4) {
@@ -28,7 +28,7 @@ palette_browse <- function(x) {
   #   link <- paste0('https://www.colorhunt.co/palette/', paste0(x, collapse = ''))
   # }# else {
   #  cli::cli_abort('{.arg site} must be {.val coolors}, {.val colorhunt}')
- # }
+  # }
 
   if (interactive()) { # nocov start
     utils::browseURL(link)

@@ -9,4 +9,4 @@
 library(testthat)
 library(palette)
 
-test_check("palette")
+test_check('palette')

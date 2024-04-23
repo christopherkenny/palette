@@ -15,5 +15,6 @@ Rainbow Colors
 }
 \examples{
 palette(roygbiv)
+
 }
 \keyword{datasets}

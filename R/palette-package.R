@@ -1,6 +1,6 @@
 #' @keywords internal
 #' @aliases palette-package
-"_PACKAGE"
+'_PACKAGE'
 
 ## usethis namespace: start
 #' @importFrom pillar pillar_shaft

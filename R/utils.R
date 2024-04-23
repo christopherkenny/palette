@@ -19,7 +19,6 @@ hex_to_luminosity <- function(hex) {
 }
 
 hex_from_name <- function(x) {
-
   i <- which(x %in% names(named_hexcodes))
 
   if (length(i) == 0) {
