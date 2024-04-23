@@ -56,7 +56,7 @@ adjust_palette <- function(x, amount) {
   srgb <- grDevices::col2rgb(vec_data(x))
   lab_m <- grDevices::convertColor(t(srgb), from = 'sRGB', to = 'Lab', scale.in = 255)
 
-  lab_m[, 1] <- pmin(lab_m[, 1] * (amount), 100)
+  lab_m[, 1] <- pmax(pmin(lab_m[, 1] * (amount), 100), 0)
 
   srgb_m <- grDevices::convertColor(lab_m, from = 'Lab', to = 'sRGB')
 
