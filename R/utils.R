@@ -33,6 +33,7 @@ convert_colors <- function(x, from = 'sRGB', to ='HSL') {
   if (from == 'sRGB' && to == 'HSL') {
     srgb <- grDevices::col2rgb(x) / 255
 
+
     c_max <- apply(srgb, 2, max)
     c_min <- apply(srgb, 2, min)
     delta <- c_max - c_min
@@ -65,7 +66,7 @@ convert_colors <- function(x, from = 'sRGB', to ='HSL') {
     x <- c * (1 - abs(((h / 60) %% 2) - 1))
     m <- l - (c / 2)
 
-    rgb <- matrix(data = 0, nrow = 3, ncol = length(x))
+    rgb <- matrix(data = 0, nrow = 3, ncol = length(h))
     rgb[1, ] <- ifelse(h <= 60 | h >= 300, c, ifelse(h <= 120 | h >= 240, x, 0))
     rgb[2, ] <- ifelse(h <= 60 | (h >= 180 & h < 240), x, ifelse(h <= 180, c, 0))
     rgb[3, ] <- ifelse(h < 120, 0, ifelse((h >= 180 & h < 300), c, x))
