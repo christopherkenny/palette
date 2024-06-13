@@ -31,8 +31,20 @@ hex_from_name <- function(x) {
 
 convert_colors <- function(x, from = 'sRGB', to ='HSL') {
   if (from == 'sRGB' && to == 'HSL') {
-    srgb <- grDevices::col2rgb(x) / 255
-
+    if (is.matrix(x)) {
+      if (nrow(x) != 3 && ncol(x) == 3) {
+        srgb <- t(x)
+      } else if (nrow(x) == 3) {
+        srgb <- x
+      } else {
+        cli::cli_abort('{.arg x} is a matrix but not convertable to an sRGB matrix.')
+      }
+      if (max(srgb) > 1 & max(srgb) <= 255) {
+        srgb <- srgb / 255
+      }
+    } else {
+      srgb <- grDevices::col2rgb(x) / 255
+    }
 
     c_max <- apply(srgb, 2, max)
     c_min <- apply(srgb, 2, min)
