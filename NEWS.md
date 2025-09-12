@@ -1,6 +1,7 @@
 # palette 0.0.3
 
 * Adds `lighten()` and `darkness()` generic functions to lighten or darken colors.
+* Corrects R dependency to R (>= 4.1.0).
 
 # palette 0.0.2
 
