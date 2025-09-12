@@ -3,20 +3,20 @@
 \name{saturation}
 \alias{saturation}
 \alias{saturate}
-\alias{desaturate}
 \alias{saturate.default}
 \alias{saturate.palette}
+\alias{desaturate}
 \alias{desaturate.default}
 \alias{desaturate.palette}
 \title{Control palette saturation}
 \usage{
 saturate(x, amount = 0.1, ...)
 
-desaturate(x, amount = 0.1, ...)
-
 \method{saturate}{default}(x, amount = 0.1, ...)
 
 \method{saturate}{palette}(x, amount = 0.1, ...)
+
+desaturate(x, amount = 0.1, ...)
 
 \method{desaturate}{default}(x, amount = 0.1, ...)
 

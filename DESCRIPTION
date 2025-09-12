@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Christopher T.",
            family = "Kenny",
            role = c("aut", "cre"),
-           email = "christopherkenny@fas.harvard.edu",
+           email = "ctkenny@proton.me",
            comment = c(ORCID = "0000-0002-9386-6860"))
 Description: Hexadecimal codes are typically used to represent colors in R.
     Connecting these codes to their colors requires practice or memorization.
@@ -17,7 +17,7 @@ Description: Hexadecimal codes are typically used to represent colors in R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 URL: https://github.com/christopherkenny/palette, https://christophertkenny.com/palette/
 BugReports: https://github.com/christopherkenny/palette/issues
 Imports: 
