@@ -1,0 +1,106 @@
+# palette
+
+`palette` provides a lightweight infrastructure for working with color
+palettes in R. The primary goal is to place colors directly next to
+their character representations. To do this, we create a palette class
+based on [`vctrs`](https://vctrs.r-lib.org/index.html). We then provide
+methods for this class, including
+[`print()`](https://rdrr.io/r/base/print.html),
+[`plot()`](https://rdrr.io/r/graphics/plot.default.html), and
+[`pillar`](https://pillar.r-lib.org/). To keep it lightweight and usable
+in other packages, the only direct dependencies are `vctrs`, `cli`, and
+`pillar`.
+
+## Installation
+
+You can install the development version of palette from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages('pak')
+pak::pak('christopherkenny/palette')
+```
+
+## Using `palette`
+
+`palette` primarily provides a `palette` `vctrs` class. Using included
+data, `roygbiv`, a length 7 vector of hex codes, we can create a
+palette.
+
+``` r
+library(palette)
+#> 
+#> Attaching package: 'palette'
+#> The following object is masked from 'package:grDevices':
+#> 
+#>     palette
+palette(roygbiv)
+```
+
+![](reference/figures/README-print.png)
+
+  
+  
+  
+  
+
+There is also a [`plot()`](https://rdrr.io/r/graphics/plot.default.html)
+method for visualizing the colors:
+
+``` r
+plot(palette(roygbiv))
+```
+
+![](reference/figures/README-plot-1.png)
+
+For use within `tibble`s, there is a `pillar_shaft` method:
+
+``` r
+tibble::tibble(
+  color = palette(roygbiv)
+)
+```
+
+![](reference/figures/README-pillar.png)
+
+# Package index
+
+## The `palette` class
+
+Creating and manipulating `palette`s
+
+- [`palette()`](http://christophertkenny.com/palette/reference/palette.md)
+  [`validate_palette()`](http://christophertkenny.com/palette/reference/palette.md)
+  [`is_palette()`](http://christophertkenny.com/palette/reference/palette.md)
+  [`as_palette()`](http://christophertkenny.com/palette/reference/palette.md)
+  : Create a palette
+- [`vec_ptype2(`*`<palette>`*`)`](http://christophertkenny.com/palette/reference/vec_ptype2.palette.md)
+  : Palette Coercion
+- [`darken()`](http://christophertkenny.com/palette/reference/brightness.md)
+  [`lighten()`](http://christophertkenny.com/palette/reference/brightness.md)
+  : Control palette brightness
+- [`saturate()`](http://christophertkenny.com/palette/reference/saturation.md)
+  [`desaturate()`](http://christophertkenny.com/palette/reference/saturation.md)
+  : Control palette saturation
+
+## Work with palette websites
+
+Functions for viewing and decoding palettes from URLs
+
+- [`palette_browse()`](http://christophertkenny.com/palette/reference/palette_browse.md)
+  [`palette_browse_url()`](http://christophertkenny.com/palette/reference/palette_browse.md)
+  : Browse a palette on coolors.co
+- [`palette_decode_url()`](http://christophertkenny.com/palette/reference/palette_decode_url.md)
+  : Convert a URL to a palette
+
+## Helpers
+
+Additional tools and example data
+
+- [`palette_function()`](http://christophertkenny.com/palette/reference/palette_function.md)
+  : Build a palette function
+- [`plot_palette()`](http://christophertkenny.com/palette/reference/plot_palette.md)
+  : Plot Palette Colors
+- [`roygbiv`](http://christophertkenny.com/palette/reference/roygbiv.md)
+  : Rainbow Colors
+
