@@ -7,7 +7,6 @@ CRAN release: 2025-09-13
 - Adds
   [`lighten()`](http://christophertkenny.com/palette/reference/brightness.md)
   and `darkness()` generic functions to lighten or darken colors.
-- Corrects R dependency to R (\>= 4.1.0).
 
 ## palette 0.0.2
 
