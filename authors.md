@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/christopherkenny/palette/blob/v0.0.3/inst/CITATION)
+[`inst/CITATION`](https://github.com/christopherkenny/palette/blob/main/inst/CITATION)
 
 Kenny C (2024). *palette: Color Scheme Helpers*. R package,
 <https://christophertkenny.com/palette/>.
