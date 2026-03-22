@@ -108,8 +108,8 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
     graphics::rect(
       xleft = box$x[(tile_idx * 4) - 3],
       xright = box$x[(tile_idx * 4) - 2],
-      ybottom = -box$y[tile_idx * 4],
-      ytop = -box$y[(tile_idx * 4) - 3],
+      ybottom = box$y[tile_idx * 4],
+      ytop = box$y[(tile_idx * 4) - 3],
       col = x_pad[tile_idx]
     )
 
