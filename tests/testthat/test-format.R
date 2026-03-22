@@ -58,3 +58,8 @@ test_that('empty print works', {
 test_that('empty format works', {
   expect_identical(format(palette(x = character())), character(0))
 })
+
+test_that('luminosity uses full 8-bit RGB scaling', {
+  expect_equal(hex_to_luminosity('#FFFFFF'), 1)
+  expect_equal(hex_to_luminosity('#000000'), 0)
+})

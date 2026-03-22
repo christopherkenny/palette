@@ -5,6 +5,8 @@ test_that('browsing works', {
     palette_browse(roygbiv),
     'https://coolors.co/FF4444-FFAE4D-FFFF60-50FF50-3939FA-AB3FFB-F68BF6'
   )
+
+  expect_error(palette_browse(palette('#11223344')))
 })
 
 test_that('decoding works', {

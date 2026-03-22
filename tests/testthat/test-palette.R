@@ -9,3 +9,8 @@ test_that('`palette` works', {
 
   expect_true(palette('red')[1] == '#FF0000')
 })
+
+test_that('`palette` rejects malformed hex colors', {
+  expect_error(palette('#GGGGGG'))
+  expect_error(palette('#12345'))
+})

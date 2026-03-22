@@ -52,12 +52,19 @@ desaturate.palette <- function(x, amount = .1, ...) {
 }
 
 adjust_saturation <- function(x, amount) {
-  hsv_m <- convert_colors(x, from = 'sRGB', to = 'HSL')
+  x_vals <- vec_data(x)
+  out <- rep(NA_character_, length(x_vals))
+  missing <- is.na(x_vals)
 
-  hsv_m[, 2] <- pmax(pmin(hsv_m[, 2] * (amount), 100), 0)
+  if (any(!missing)) {
+    hsv_m <- convert_colors(x_vals[!missing], from = 'sRGB', to = 'HSL')
 
-  srgb_m <- convert_colors(hsv_m, from = 'HSL', to = 'sRGB')
+    hsv_m[, 2] <- pmax(pmin(hsv_m[, 2] * amount, 100), 0)
 
-  out <- grDevices::rgb(srgb_m[, 1], srgb_m[, 2], srgb_m[, 3], maxColorValue = 255)
+    srgb_m <- convert_colors(hsv_m, from = 'HSL', to = 'sRGB')
+
+    out[!missing] <- grDevices::rgb(srgb_m[, 1], srgb_m[, 2], srgb_m[, 3], maxColorValue = 255)
+  }
+
   vec_set_names(out, vec_names(x))
 }

@@ -15,7 +15,7 @@ lpad <- function(x, len) {
 }
 
 hex_to_luminosity <- function(hex) {
-  apply(grDevices::col2rgb(hex) / 256, 2, function(y) sum(c(0.2126, 0.7152, 0.0722) * y))
+  apply(grDevices::col2rgb(hex) / 255, 2, function(y) sum(c(0.2126, 0.7152, 0.0722) * y))
 }
 
 hex_from_name <- function(x) {

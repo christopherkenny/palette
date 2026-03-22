@@ -21,3 +21,24 @@ test_that('desaturating works', {
     'palette'
   )
 })
+
+test_that('saturation helpers preserve missing values', {
+  x <- c('#FF0000', NA_character_, '#00FF00')
+
+  expect_identical(
+    is.na(saturate(x)),
+    c(FALSE, TRUE, FALSE)
+  )
+  expect_identical(
+    is.na(desaturate(x)),
+    c(FALSE, TRUE, FALSE)
+  )
+  expect_identical(
+    is.na(saturate(palette(x))),
+    c(FALSE, TRUE, FALSE)
+  )
+  expect_identical(
+    is.na(desaturate(palette(x))),
+    c(FALSE, TRUE, FALSE)
+  )
+})

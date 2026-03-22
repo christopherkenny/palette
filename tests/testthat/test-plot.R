@@ -6,6 +6,15 @@ test_that('plotting works no vdiffr', {
   expect_null(plot_palette(named_pal, use_ggplot = FALSE))
 })
 
+test_that('plotting handles empty palettes and rejects all-missing palettes', {
+  p <- plot_palette(palette(character()))
+  expect_s3_class(p, 'gg')
+  expect_equal(nrow(p$data), 0)
+
+  expect_error(plot_palette(palette(NA_character_)))
+  expect_error(plot_palette(palette(c(NA_character_, NA_character_))))
+})
+
 test_that('plotting works with vdiffr', {
   skip_if_not_installed('vdiffr')
   vdiffr::expect_doppelganger(

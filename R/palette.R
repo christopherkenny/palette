@@ -27,10 +27,11 @@ new_palette <- function(x = character()) {
 #' @export
 #' @rdname palette
 validate_palette <- function(x) {
-  # check the first character is a "#"
-  stopifnot(all(is.na(x) | as.character(substr(x, 1, 1)) == '#'))
-  # check the length of the string is 7 or 9
-  stopifnot(all(is.na(x) | nchar(x) %in% c(7, 9)))
+  valid <- is.na(x) | grepl('^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$', x)
+
+  if (!all(valid)) {
+    cli::cli_abort('{.arg x} must contain only valid hex colors of the form {.val #RRGGBB} or {.val #RRGGBBAA}.')
+  }
 
   invisible(x)
 }

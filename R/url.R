@@ -15,6 +15,10 @@ palette_browse <- function(x) {
 
   site <- 'coolors' # match.arg(site)
 
+  if (any(!is.na(x) & nchar(x) == 9)) {
+    cli::cli_abort('coolors.co URLs do not support alpha-channel hex colors.')
+  }
+
   # if (site == 'coolors') {
   x <- substr(x, 2, 7)
   link <- paste0('https://coolors.co/', paste0(x, collapse = '-'))

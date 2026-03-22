@@ -15,39 +15,71 @@ plot.palette <- function(x, ...) {
 #' @examples
 #' plot_palette(roygbiv)
 plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
-  n <- length(x)
-  x_in <- stats::setNames(x, x)
+  x_vals <- vec_data(x)
+  x_names <- vec_names(x)
+  n <- length(x_vals)
+
+  if (n == 0) {
+    if (use_ggplot && requireNamespace('ggplot2', quietly = TRUE)) {
+      .data <- ggplot2::.data
+      return(
+        ggplot2::ggplot(data.frame(x = numeric(), y = numeric()), ggplot2::aes(x = .data$x, y = .data$y)) +
+          ggplot2::coord_fixed() +
+          ggplot2::theme_void()
+      )
+    }
+
+    plot(NULL,
+      axes = FALSE, xlab = '', ylab = '',
+      xlim = c(0, 1), ylim = c(1, 0), asp = 1
+    )
+    return(invisible(NULL))
+  }
+
+  if (all(is.na(x_vals))) {
+    cli::cli_abort('{.arg x} must contain at least one non-missing color to plot.')
+  }
+
+  x_in <- stats::setNames(stats::na.omit(x_vals), stats::na.omit(x_vals))
 
   # convert to square-able
   nc <- ceiling(sqrt(n))
   nr <- ceiling(n / nc)
-  x <- c(x, rep(NA_character_, (nr * nc) - n))
+  x_pad <- c(x_vals, rep(NA_character_, (nr * nc) - n))
+  if (is.null(x_names)) {
+    x_names_pad <- NULL
+  } else {
+    x_names_pad <- c(x_names, rep(NA_character_, length(x_pad) - n))
+  }
 
   # ggplot it ----
   box <- bocks(nr, nc)
   sq <- data.frame(
-    col = rep(vec_data(x), each = 4),
+    col = rep(x_pad, each = 4),
     x = box$x,
     y = -box$y
   )
 
 
-  if (use_names && !is.null(vec_names(x))) {
-    labs <- paste0(vec_names(x), '\n', vec_data(x))
+  if (use_names && !is.null(x_names_pad)) {
+    labs <- paste0(x_names_pad, '\n', x_pad)
   } else {
-    labs <- vec_data(x)
+    labs <- x_pad
   }
 
   label_loc <- data.frame(
     col = labs,
-    x = box$x[seq(1, length(x) * 4, by = 4)] + 0.5,
-    y = -(box$y[seq(1, length(x) * 4, by = 4)] + 0.5)
+    x = box$x[seq(1, length(x_pad) * 4, by = 4)] + 0.5,
+    y = -(box$y[seq(1, length(x_pad) * 4, by = 4)] + 0.5)
   )
   if (nrow(label_loc) > n) {
     label_loc$col[(n + 1):nrow(label_loc)] <- ''
   }
 
-  label_loc$color <- ifelse(hex_to_luminosity(x) > 0.5, 'black', 'white')
+  label_loc$color <- 'white'
+  non_missing <- !is.na(x_pad)
+  label_loc$color[non_missing] <- ifelse(hex_to_luminosity(x_pad[non_missing]) > 0.5, 'black', 'white')
+  label_loc$color[!non_missing] <- NA_character_
 
   if (use_ggplot && requireNamespace('ggplot2', quietly = TRUE)) {
     # if ggplot2 is available, return a ggplot
@@ -65,7 +97,7 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
       ggplot2::theme_void()
   } else {
     # otherwise make a base plot
-    sq <- sq[!is.na(sq$col), ]
+    tile_idx <- which(!is.na(x_pad))
     label_loc <- label_loc[seq_len(n), ]
 
     # Plot tiles
@@ -74,11 +106,11 @@ plot_palette <- function(x, use_names = TRUE, use_ggplot = TRUE) {
       xlim = c(0, nc), ylim = c(nr, 0), asp = 1
     )
     graphics::rect(
-      xleft = sq$x[(seq_along(x) * 4) - 3],
-      xright = sq$x[(seq_along(x) * 4) - 2],
-      ybottom = -sq$y[(seq_along(x) * 4)],
-      ytop = -sq$y[(seq_along(x) * 4) - 3],
-      col = x_in
+      xleft = box$x[(tile_idx * 4) - 3],
+      xright = box$x[(tile_idx * 4) - 2],
+      ybottom = -box$y[tile_idx * 4],
+      ytop = -box$y[(tile_idx * 4) - 3],
+      col = x_pad[tile_idx]
     )
 
     # Add text
