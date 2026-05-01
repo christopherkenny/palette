@@ -17,6 +17,7 @@ You can install the development version of palette from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages('pak')
 pak::pak('christopherkenny/palette')
 ```
@@ -28,6 +29,7 @@ data, `roygbiv`, a length 7 vector of hex codes, we can create a
 palette.
 
 ``` r
+
 library(palette)
 #> 
 #> Attaching package: 'palette'
@@ -48,6 +50,7 @@ There is also a [`plot()`](https://rdrr.io/r/graphics/plot.default.html)
 method for visualizing the colors:
 
 ``` r
+
 plot(palette(roygbiv))
 ```
 
@@ -56,6 +59,7 @@ plot(palette(roygbiv))
 For use within `tibble`s, there is a `pillar_shaft` method:
 
 ``` r
+
 tibble::tibble(
   color = palette(roygbiv)
 )
