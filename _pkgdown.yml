@@ -1,6 +1,7 @@
 url: http://christophertkenny.com/palette/
 template:
   bootstrap: 5
+  package: ctktemplate
   bootswatch: journal
 reference:
 - title: "The `palette` class"
