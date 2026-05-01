@@ -30,6 +30,7 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr
 Config/testthat/edition: 3
+Config/Needs/website: christopherkenny/ctktemplate
 Language: en-US
 Depends: 
     R (>= 4.1.0)
